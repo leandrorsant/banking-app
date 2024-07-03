@@ -51,4 +51,22 @@ public class AccountServiceImpl implements AccountService{
         return AccountMapper.mapToAccountDto(savedAccount);
     }
 
+
+
+    @Override
+    public AccountDto withdraw(Long id, double amount) {
+        Account account = accountRepository
+        .findById(id)
+        .orElseThrow(() -> new RuntimeException("Account does not exist"));
+    
+        if(account.getBalance() < amount){
+            throw new RuntimeException("Insufficient amount"); 
+        }
+
+        double total = account.getBalance() - amount;
+        account.setBalance(total);
+        Account savedAccount = accountRepository.save(account);
+        return AccountMapper.mapToAccountDto(savedAccount);
+    }
+
 }

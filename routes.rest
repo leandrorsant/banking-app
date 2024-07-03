@@ -17,3 +17,11 @@ Content-Type: application/json
 {
     "amount": 20
 }
+
+### 
+PUT http://localhost:8080/api/accounts/4/withdraw
+Content-Type: application/json
+
+{
+    "amount": 20
+}
